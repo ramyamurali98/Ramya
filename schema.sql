@@ -1,8 +1,12 @@
+--Creating database TruYum
+
 create database truyum
 go
 
 use truyum
 go
+
+--Creating Table Menu
 
 create table Menu
 (
@@ -17,24 +21,22 @@ Action varchar(10)
 )
 go
 
+--Creating Table Users 
 create table Users
 (
-user_ids int Identity(1,1) primary key,
-Name varchar(30),
-Free_Delivery varchar(10),
-Price numeric(5,2),
-Category varchar(30),
-Action varchar(50)
+user_Id int Identity(1,1) primary key,
+user_Name varchar(30)
 )
 go
 
+--Creating Table cart
+
 create table cart 
 (
-cart_id int Identity(1,1)
-constraint fk_cart_id foreign key(cart_id) references Users(user_ids),
-Name varchar(30),
-Free_Delivery varchar(10),
-Price numeric(5,2),
-Action varchar(50)
+cart_id int Identity(1,1) primary key,
+users_id int,
+menu_id int,
+constraint fk_menu foreign key (menu_id) references Menu(Menu_Id),
+constraint fk_user foreign key (users_id) references Users(user_Id)
 )
 go
